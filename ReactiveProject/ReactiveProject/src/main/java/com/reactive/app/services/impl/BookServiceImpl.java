@@ -29,9 +29,9 @@ public class BookServiceImpl implements BookService {
                 .delayElements(Duration.ofSeconds(2))
                 .log()
                 .map(book -> {
-            book.setName(book.getName().toUpperCase());
-            return book;
-        });
+                    book.setName(book.getName().toUpperCase());
+                    return book;
+                });
     }
 
     @Override
@@ -62,5 +62,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Flux<Book> search(String query) {
         return null;
+    }
+
+    @Override
+    public Flux<Book> searchBooks(String titleKeyword) {
+        return this.bookRepository.searchBookByTitle("%" + titleKeyword + "%");
     }
 }

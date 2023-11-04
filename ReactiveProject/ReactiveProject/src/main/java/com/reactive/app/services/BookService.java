@@ -20,4 +20,6 @@ public interface BookService {
 
 //    add more methods are your requirement
 
+    Flux<Book> searchBooks(String titleKeyword);
+
 }

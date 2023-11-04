@@ -32,15 +32,26 @@ public class BookController {
         return bookService.get(bookId);
     }
 
-//    update
+    //    update
     @PutMapping("/{bookId}")
     public Mono<Book> update(@RequestBody Book book, @PathVariable int bookId) {
-        return bookService.update(book,bookId);
+        return bookService.update(book, bookId);
     }
 
-//    delete
+    //    delete
     @DeleteMapping("/{bookId}")
-    public  Mono<Void> delete(@PathVariable int bookId){
+    public Mono<Void> delete(@PathVariable int bookId) {
         return bookService.delete(bookId);
     }
+
+//    search
+
+    @GetMapping("/search")
+    public Flux<Book> searchBooks(
+            @RequestParam("query") String query
+    ) {
+        System.out.println(query);
+        return this.bookService.searchBooks(query);
+    }
+
 }
